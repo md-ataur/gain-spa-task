@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
 const Popup = (props) => {
-    const [inputData, setInputData] = useState({});
+    const [pname, setPname] = useState('');
+    const [brand, setBrand] = useState('');
+    const [ram, setRam] = useState('');
+    const [tags, setTags] = useState('');
+    const [price, setPrice] = useState('');
+    const [products, setProducts] = useState({});
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log(inputData);
+
+        const newObj = {
+            pname: pname,
+            brand: brand,
+            ram: ram,
+            tags: tags,
+            price: price,
+        };
+
+        setProducts(newObj);
+
+        console.log(newObj);
     };
 
-    const handleOnChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        let newInputData = { ...inputData };
-        newInputData[name] = value;
-        setInputData(newInputData);
-    };
+    useEffect(() => {
+        localStorage.setItem('items', JSON.stringify([products]));
+    }, [products]);
 
     return (
         <div>
@@ -28,9 +40,10 @@ const Popup = (props) => {
                         <div className="mb-3">
                             <Form.Label htmlFor="productName">Product Name</Form.Label>
                             <Form.Control
-                                onChange={handleOnChange}
+                                onChange={(e) => setPname(e.target.value)}
                                 type="text"
                                 name="pname"
+                                required
                                 placeholder="Enter product name"
                             />
                         </div>
@@ -38,18 +51,20 @@ const Popup = (props) => {
                             <Col>
                                 <Form.Label htmlFor="brand">Brand</Form.Label>
                                 <Form.Control
-                                    onChange={handleOnChange}
+                                    onChange={(e) => setBrand(e.target.value)}
                                     type="text"
                                     name="brand"
+                                    required
                                     placeholder="Enter brand name"
                                 />
                             </Col>
                             <Col>
                                 <Form.Label htmlFor="ram">Ram/Rom</Form.Label>
                                 <Form.Control
-                                    onChange={handleOnChange}
+                                    onChange={(e) => setRam(e.target.value)}
                                     type="text"
                                     name="ram"
+                                    required
                                     placeholder="Enter Ram"
                                 />
                             </Col>
@@ -57,22 +72,29 @@ const Popup = (props) => {
                         <div className="mb-3">
                             <Form.Label htmlFor="tags">Tags</Form.Label>
                             <Form.Select
-                                onChange={handleOnChange}
                                 name="tags"
+                                onChange={(e) =>
+                                    setTags(
+                                        Array.from(e.target.options)
+                                            .filter((option) => option.selected)
+                                            .map((option) => option.value)
+                                    )
+                                }
                                 multiple
-                                aria-label="Default select example"
+                                required
                             >
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="Best Value">Best Value</option>
+                                <option value="Best Camera">Best Camera</option>
+                                <option value="Best Performance">Best Performance</option>
                             </Form.Select>
                         </div>
                         <div className="mb-3">
                             <Form.Label htmlFor="price">Price</Form.Label>
                             <Form.Control
-                                onChange={handleOnChange}
+                                onChange={(e) => setPrice(e.target.value)}
                                 type="text"
                                 name="price"
+                                required
                                 placeholder="Enter price"
                             />
                         </div>
