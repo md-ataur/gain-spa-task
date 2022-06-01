@@ -61,34 +61,43 @@ button.addbtn {
   font-weight: 500;
 }
 
-.sources-area h3 {
+.chart-area h3 {
   color: #575757;
   font-weight: bold;
-}
-
-.chart-area {
-  display: flex;
-  justify-content: space-between;
 }
 
 .sources-data {
   display: flex;
   align-items: center;
+  padding-right: 20px;
 }
 
 .list-data {
   width: 250px;
-  margin-left: 40px;
-  font-size: 20px;
+  margin-left: 30px;
+  font-size: 19px;
   color: #74777b;
   font-weight: 500;
 }
 
 .list-data span {
   margin-right: 6px;
-  font-size: 25px;
+  font-size: 24px;
 }
 
 .VictoryContainer text tspan {
   fill: #747474 !important;
+}
+
+.conditions-data {
+  padding-left: 20px;
+}
+
+.conditions-data text tspan {
+  font-size: 12px !important;
+}
+
+.modal-header {
+  background: #0095a0;
+  color: #fff;
 }

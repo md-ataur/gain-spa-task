@@ -1,24 +1,20 @@
-import React from 'react';
-import { Container } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import { FiSearch } from 'react-icons/fi';
-import { VictoryBar, VictoryChart } from 'victory';
+import Conditions from '../Conditions/Conditions';
+import Popup from '../Popup/Popup';
 import Sources from '../Sources/Sources';
 
-const dataBar = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 },
-];
-
 const Dashboard = () => {
-    /* const [storeData, setStoreData] = useState([]);
+    const [storeData, setStoreData] = useState([]);
+    const [modalShow, setModalShow] = React.useState(false);
 
+    // Data load from api
     useEffect(() => {
         fetch('./api-data.json')
             .then((res) => res.json())
             .then((data) => setStoreData(data));
-    }, []); */
+    }, []);
 
     return (
         <div>
@@ -34,23 +30,26 @@ const Dashboard = () => {
                                 <FiSearch />
                             </span>
                         </div>
-                        <button className="addbtn">Add Product</button>
+                        <button onClick={() => setModalShow(true)} className="addbtn">
+                            Add Product
+                        </button>
                     </div>
                 </Container>
             </header>
             <Container className="mx-auto">
                 <div className="chart-area">
-                    <div className="sources-area">
-                        <h3>Sources</h3>
-                        <Sources />
-                    </div>
-                    <div className="conditions">
-                        <h3>Conditions</h3>
-                        <VictoryChart domainPadding={20}>
-                            <VictoryBar data={dataBar} x="quarter" y="earnings" />
-                        </VictoryChart>
-                    </div>
+                    <Row>
+                        <Col>
+                            <h3>Sources</h3>
+                            <Sources storeData={storeData} />
+                        </Col>
+                        <Col>
+                            <h3>Conditions</h3>
+                            <Conditions storeData={storeData} />
+                        </Col>
+                    </Row>
                 </div>
+                <Popup show={modalShow} onHide={() => setModalShow(false)} />
             </Container>
         </div>
     );
