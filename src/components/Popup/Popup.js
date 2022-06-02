@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
 const Popup = (props) => {
@@ -21,16 +21,10 @@ const Popup = (props) => {
         };
 
         setProducts(newObj);
-
-        console.log(newObj);
     };
 
-    useEffect(() => {
-        localStorage.setItem('items', JSON.stringify([products]));
-    }, [products]);
-
     return (
-        <div>
+        <>
             <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">Add Product</Modal.Title>
@@ -107,7 +101,7 @@ const Popup = (props) => {
                     </Modal.Footer>
                 </Form>
             </Modal>
-        </div>
+        </>
     );
 };
 

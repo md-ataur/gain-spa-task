@@ -61,6 +61,10 @@ button.addbtn {
   font-weight: 500;
 }
 
+.chart-area {
+  margin-bottom: 120px;
+}
+
 .chart-area h3 {
   color: #575757;
   font-weight: bold;
@@ -100,4 +104,28 @@ button.addbtn {
 .modal-header {
   background: #0095a0;
   color: #fff;
+}
+
+.products-area {
+  margin-bottom: 60px;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 30px;
+}
+
+.product-header h3 {
+  color: #575757;
+}
+
+.ptitle h5 {
+  color: #575757;
+  margin: 0;
+}
+
+.ptitle span {
+  color: #575757;
+  font-weight: 500;
 }

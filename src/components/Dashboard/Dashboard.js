@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { FiSearch } from 'react-icons/fi';
 import Conditions from '../Conditions/Conditions';
 import Popup from '../Popup/Popup';
+import Products from '../Products/Products';
 import Sources from '../Sources/Sources';
 
 const Dashboard = () => {
@@ -17,7 +18,7 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <div>
+        <>
             <header className="header-bar">
                 <Container className="d-flex justify-content-between">
                     <div className="logo">
@@ -49,9 +50,12 @@ const Dashboard = () => {
                         </Col>
                     </Row>
                 </div>
-                <Popup show={modalShow} onHide={() => setModalShow(false)} />
+                <div className="products-area">
+                    <Products storeData={storeData} />
+                </div>
             </Container>
-        </div>
+            <Popup show={modalShow} onHide={() => setModalShow(false)} />
+        </>
     );
 };
 
