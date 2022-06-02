@@ -51,7 +51,7 @@ const Dashboard = () => {
                     </Row>
                 </div>
                 <div className="products-area">
-                    <Products storeData={storeData} />
+                    <Products storeData={storeData} setStoreData={setStoreData} />
                 </div>
             </Container>
             <Popup show={modalShow} onHide={() => setModalShow(false)} />
