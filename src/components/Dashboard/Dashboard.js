@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { FiSearch } from 'react-icons/fi';
 import Conditions from '../Conditions/Conditions';
 import Popup from '../Popup/Popup';
-import Products from '../Products/Products';
+import Products from '../Products/Products.js';
 import Sources from '../Sources/Sources';
 
 const Dashboard = () => {
@@ -54,6 +54,7 @@ const Dashboard = () => {
                     <Products storeData={storeData} setStoreData={setStoreData} />
                 </div>
             </Container>
+
             <Popup show={modalShow} onHide={() => setModalShow(false)} />
         </>
     );
